@@ -1,8 +1,7 @@
 const fs = require('fs');
 const { exec } = require('child_process');
 const readline = require("readline");
-const path = require('path');
-const { dirname } = require('path');
+const path = require('path'); 
 
 const rl = readline.createInterface({
     input: process.stdin,
@@ -130,19 +129,19 @@ rl.question("Enter dispatcher file path:: ", function (fileName) {
     for (let counter = 0; counter < filePaths.length; counter++) {
         const dispFileName = filePaths[counter];
         promises.push(Promise.all([dispatcherVersion(dispFileName), maxCacheRatioFn(dispFileName), minCacheRatioFn(dispFileName),
-            displayErrors(dispFileName), displayWarningsUrls(dispFileName), displayTopNRequest(dispFileName)]));
-    
+        displayErrors(dispFileName), displayWarningsUrls(dispFileName), displayTopNRequest(dispFileName)]));
+
     }
-    Promise.all(promises).then(() =>{
+    Promise.all(promises).then(() => {
         console.log(`Execution time : ${new Date().getTime() - startTime}ms`);
     });
-    
+
 });
 
 const getParentDirectoryName = (fileName) => path.basename(path.dirname(fileName)) === '.' ? '' : path.basename(path.dirname(fileName));
 
 rl.on("close", function () {
-    
+
     process.exit(0);
 });
 
