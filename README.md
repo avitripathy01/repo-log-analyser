@@ -1,7 +1,7 @@
 # repo-log-analyser
 Scan log file(s) and distribute it categorically into segments
 
-Current source supports scanning the dispatcher log file only. 
+Current source code supports scanning the dispatcher log file only. 
 
 **Available features to stdout/files:**
 
