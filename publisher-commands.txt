@@ -1,0 +1,8 @@
+commands for publisher logs:
+ 	• awk '{if(/*ERROR*/) print } ' error.log  | cut -d " " -f 4-  | awk ' $1 ~ /[a-z]/ {print}' | cut -d " " -f 2- | sort | uniq -c > hc-app-errors.log
+	• awk '{if(/*ERROR*/ && /GET/) print } ' error.log  | cut -d " " -f 7- |  sort -nr | uniq -c | sort -nr  > hc-error-requests.log
+	• awk '{if(/*WARN*/ && /GET/) print } ' error.log | cut -d " " -f 7- | sort -k2| uniq -c | sort -nr > hc-error-warnings.log
+	• awk '{if( /POST/) print $6} ' request.log | sort  | uniq -c | sort -nr   > hc-request-posts.log
+	• awk '{if($9>400) { print $9 "\t" $7}}' access.log*  | cut  -d '?' -f1  | sort -k2 | uniq -c | sort -nr > hc-access-400.log
+	• awk '{if( /Caused by:/) print} ' error.log | sort  | uniq -c | sort -nr   > hc-error-exception.log
+  • awk '{if( /->/) print $5 "\t" $6} ' request.log |  sort  | uniq -c | sort -nr   > hc-request-publish.log
